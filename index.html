@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <title>My Calendar</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: start;
+      height: 100vh;
+    }
+
+    .calendar {
+      width: 90vw;
+      max-width: 1200px;
+      background-color: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      margin-top: 20px;
+    }
+
+    .calendar-grid {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 1px;
+      border: 1px solid #ddd;
+    }
+
+    .day, .day-name {
+      border: 1px solid #ddd;
+      text-align: center;
+      padding: 20px 0;
+      min-height: 80px;
+    }
+
+    .day.empty {
+      background-color: #f9f9f9;
+    }
+
+    h1 {
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+    <div class="calendar">
+        <div class="calendar-header">2025年11月</div>
+        <div class="calendar-grid">
+            <div class="day header">日</div>
+            <div class="day header">月</div>
+            <div class="day header">火</div>
+            <div class="day header">水</div>
+            <div class="day header">木</div>
+            <div class="day header">金</div>
+            <div class="day header">土</div>
+            <!-- ここに日付を追加していく -->
+            <div class="day">1</div>
+            <div class="day">2</div>
+            <div class="day">3</div>
+            <div class="day">4</div>
+            <div class="day">5</div>
+            <div class="day">6</div>
+            <div class="day">7</div>
+            <div class="day">8</div>
+            <div class="day">9</div>
+
+            <script src="script.js"></script>
+</body>
