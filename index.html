@@ -1,75 +1,138 @@
+<!-- このHTML文書がHTML5であることを示す -->
 <!DOCTYPE html>
+
+<!-- ページの言語を日本語に設定 -->
 <html lang="ja">
 
 <head>
-  <meta charset="UTF-8">
-  <title>My Calendar</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f4f4f4;
-      margin: 0;
-      display: flex;
-      justify-content: center;
-      align-items: start;
-      height: 100vh;
-    }
+    <!-- 文字コードをUTF-8に設定（日本語が文字化けしないように） -->
+    <meta charset="UTF-8">
 
-    .calendar {
-      width: 90vw;
-      max-width: 1200px;
-      background-color: white;
-      padding: 20px;
-      border-radius: 8px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-      margin-top: 20px;
-    }
+    <!-- ブラウザのタブに表示されるタイトル -->
+    <title>My Calendar</title>
 
-    .calendar-grid {
-      display: grid;
-      grid-template-columns: repeat(7, 1fr);
-      gap: 1px;
-      border: 1px solid #ddd;
-    }
+    <style>
+        /* ページ全体の基本設定 */
+        body {
+            /* ページ全体の文字フォント */
+            font-family: Arial, sans-serif;
+            /* ページの背景色 */
+            background-color: #f4f4f4;
+            /* 標準の余白をなくす */
+            margin: 0;
+            /* レイアウトにflexboxを使う */
+            display: flex;
+            /* 上から下への配置にする */
+            flex-direction: column;
+            /* 上側に寄せて配置する */
+            justify-content: start;
+            /* 左右中央にそろえる */
+            align-items: center;
+            /* 画面の高さを100%使う */
+            height: 100vh;
+        }
 
-    .day, .day-name {
-      border: 1px solid #ddd;
-      text-align: center;
-      padding: 20px 0;
-      min-height: 80px;
-    }
+        /* カレンダー全体の箱 */
+        .calendar {
+            /* 横幅を画面の90%にする */
+            width: 90vw;
+            /* 最大幅は1200pxに制限 */
+            max-width: 1200px;
+            /* 背景色は白 */
+            background-color: white;
+            /* 中の余白を20pxつける */
+            padding: 20px;
+            /* 角を丸くする */
+            border-radius: 8px;
+            /* 軽く影をつけて浮き上がらせる */
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            /* 上に余白を付ける */
+            margin-top: 20px;
+        }
 
-    .day.empty {
-      background-color: #f9f9f9;
-    }
+        /* カレンダーのグリッド（マスを並べる部分） */
+        .calendar-grid {
+            /* グリッドレイアウトを使う */
+            display: grid;
+            /* 7列を均等に並べる（曜日分） */
+            grid-template-columns: repeat(7, 1fr);
+            /* マス間に1pxの隙間 */
+            gap: 1px;
+            /* 全体の枠線 */
+            border: 1px solid #ddd;
+        }
 
-    h1 {
-      text-align: center;
-    }
-  </style>
+        /* 各マス（曜日名 or 日付） */
+        .day,
+        .day-name {
+            /* 各マスの枠線 */
+            border: 1px solid #ddd;
+            /* 文字を中央揃え */
+            text-align: center;
+            /* 上下にゆったりした余白をつける */
+            padding: 20px 0;
+            /* 最低でも80pxの高さを確保 */
+            min-height: 80px;
+        }
+
+        /* 空白マス（前月や次月にあたる部分） */
+        .day.empty {
+            /* 薄い灰色の背景 */
+            background-color: #f9f9f9;
+        }
+
+        /* h1（今は使っていないが念のため） */
+        h1 {
+            /* 中央寄せ */
+            text-align: center;
+        }
+
+        /* 月タイトルと前後ボタンをまとめるヘッダー */
+        .header {
+            /* カレンダーと同じ幅 */
+            width: 90vw;
+            /* 最大幅1200px */
+            max-width: 1200px;
+            /* 上に余白 */
+            margin-top: 20px;
+            /* フレックスで横並びにする */
+            display: flex;
+            /* 水平方向を中央揃え */
+            justify-content: center;
+            /* 垂直方向も中央揃え */
+            align-items: center;
+            /* ボタンとタイトルの間の余白 */
+            gap: 20px;
+        }
+
+        /* 月名（例：2025年11月）の文字スタイル */
+        #month-title {
+            /* 文字を大きくする */
+            font-size: 2rem;
+            /* 太字にする */
+            font-weight: bold;
+        }
+    </style>
 </head>
 
 <body>
-    <div class="calendar">
-        <div class="calendar-header">2025年11月</div>
-        <div class="calendar-grid">
-            <div class="day header">日</div>
-            <div class="day header">月</div>
-            <div class="day header">火</div>
-            <div class="day header">水</div>
-            <div class="day header">木</div>
-            <div class="day header">金</div>
-            <div class="day header">土</div>
-            <!-- ここに日付を追加していく -->
-            <div class="day">1</div>
-            <div class="day">2</div>
-            <div class="day">3</div>
-            <div class="day">4</div>
-            <div class="day">5</div>
-            <div class="day">6</div>
-            <div class="day">7</div>
-            <div class="day">8</div>
-            <div class="day">9</div>
+    <!-- 月タイトルと前月・次月ボタンを並べるヘッダー部分 -->
+    <div class="header">
+        <!-- 前の月へ切り替えるボタン -->
+        <button id="prev-month">＜</button>
 
-            <script src="script.js"></script>
+        <!-- 現在の "年 + 月" を表示する場所（JavaScriptで更新） -->
+        <span id="month-title"></span>
+
+        <!-- 次の月へ切り替えるボタン -->
+        <button id="next-month">＞</button>
+    </div>
+
+    <!-- カレンダー本体がJavaScriptで作られて挿入される場所 -->
+    <div class="calendar"></div>
+
+    <!-- JavaScriptの読み込み -->
+    <script src="script.js"></script>
 </body>
+
+</html>
