@@ -112,6 +112,90 @@
             /* 太字にする */
             font-weight: bold;
         }
+
+        /* 日曜日（日付）を赤くする */
+        .day.sunday {
+            color: red;
+        }
+
+        /* 土曜日（日付）を青くする */
+        .day.saturday {
+            color: blue;
+        }
+
+        /* 予定入力子画面用 */
+        #schedule-panel {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: white;
+            padding: 24px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+
+            width: 480px;
+            max-width: 90vw;
+            z-index: 1000;
+        }
+
+        /* 子画面の中身を縦並びにする */
+        #schedule-panel>* {
+            display: block;
+        }
+
+        /* 入力欄をしっかり幅いっぱいに */
+        #schedule-panel input {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 8px;
+            font-size: 1rem;
+            margin-bottom: 12px;
+        }
+
+        /* ボタンを少し見やすく */
+        #schedule-panel button {
+            padding: 6px 12px;
+            margin-right: 8px;
+        }
+
+
+        /* 子画面を基準に配置できるようにする */
+        #schedule-panel {
+            position: fixed;
+        }
+
+        /* 右上の × ボタン */
+        .close-btn {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* 入力欄と追加ボタンの並び */
+        .schedule-input-row {
+            display: flex;
+            gap: 10px;
+        }
+
+        /* 入力欄は横に広がる */
+        #schedule-text {
+            flex: 1;
+            padding: 8px;
+            font-size: 1rem;
+        }
+
+        /* 追加ボタンを右側に */
+        #add-schedule {
+            padding: 8px 16px;
+            font-size: 1rem;
+        }
     </style>
 </head>
 
@@ -130,6 +214,19 @@
 
     <!-- カレンダー本体がJavaScriptで作られて挿入される場所 -->
     <div class="calendar"></div>
+
+    <!-- 日付クリック時に出る子画面 -->
+    <div id="schedule-panel">
+        <button id="close-panel" class="close-btn">×</button>
+
+        <h2 id="selected-date-title"></h2>
+
+        <div class="schedule-input-row">
+            <input type="text" id="schedule-text" placeholder="予定を入力">
+            <button id="add-schedule">追加</button>
+        </div>
+    </div>
+
 
     <!-- JavaScriptの読み込み -->
     <script src="script.js"></script>
